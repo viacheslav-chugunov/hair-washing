@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hair Washing</string>
+    <string name="wash_hair">Помыть</string>
+    <string name="do_not_wash_hair">Не мыть</string>
+    <string name="hair_washed">Помыл(а) волосы сегодня</string>
+    <string name="hair_already_washed">Мыл(а) сегодня</string>
+    <string name="dry_hair">Сухие</string>
+    <string name="regular_hair">Нормальные</string>
+    <string name="oily_hair">Жирные</string>
+    <string name="short_hair">Короткие</string>
+    <string name="middle_hair">Средние</string>
+    <string name="long_hair">Длинные</string>
+    <string name="one_week">Неделя</string>
+    <string name="two_weeks">2 недели</string>
+    <string name="month">Месяц</string>
+</resources>

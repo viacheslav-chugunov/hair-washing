@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff751a</color>
+    <color name="colorPrimaryDark">#e65c00</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorWindowBackground">#f3d8e5</color>
+
+    <color name="hair_already_washed">#4da6ff</color>
+    <color name="wash_hair">#5dd55d</color>
+    <color name="do_not_wash_hair">#ff80b3</color>
+    <color name="toolbar_control_normal">#d9e6ef</color>
+    <color name="text">#d9e6ef</color>
+    <color name="button_background">#df9f9f</color>
+</resources>

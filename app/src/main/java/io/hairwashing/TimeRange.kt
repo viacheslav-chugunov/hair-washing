@@ -30,10 +30,4 @@ enum class TimeRange(val days: Int, val view: String) {
         TWO_WEEKS -> MONTH
         else -> ONE_WEEK
     }
-
-//    fun getNext() = when(days) {
-//        7 -> TWO_WEEKS
-//        14 -> MONTH
-//        else -> ONE_WEEK
-//    }
 }

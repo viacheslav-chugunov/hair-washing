@@ -7,6 +7,7 @@ import android.view.View
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
 import io.hairwashing.TimeRange
+import io.hairwashing.db.ConfigDB
 import io.hairwashing.structure.fragment.SetupFragment
 import io.hairwashing.structure.fragment.WeeklyFragment
 import io.hairwashing.tools.SetupFile

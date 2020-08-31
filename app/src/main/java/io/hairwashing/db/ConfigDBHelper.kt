@@ -16,6 +16,11 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         const val DB_KEY_ID = "_id"
         const val DB_KEY_VALUE = "value"
         const val DB_KEY_ARGUMENT = "argument"
+
+        const val DB_VALUE_HAIR_TYPE = "hair_type"
+        const val DB_VALUE_HAIR_LENGTH = "hair_length"
+        const val DB_VALUE_LAST_WASHING = "last_washing"
+        const val DB_VALUE_TIME_RANGE = "time_range"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -29,10 +34,10 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
     }
 
     private fun initDBWithDefaultArgs() {
-        insertLine("hair_type", "dry")
-        insertLine("hair_length", "short")
-        insertLine("last_washing", "never")
-        insertLine("time_range","one_week")
+        insertLine(DB_VALUE_HAIR_TYPE, "dry")
+        insertLine(DB_VALUE_HAIR_LENGTH, "short")
+        insertLine(DB_VALUE_LAST_WASHING, "never")
+        insertLine(DB_VALUE_TIME_RANGE,"one_week")
     }
 
     private fun insertLine(value: String, argument: String) {

@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import java.lang.IllegalArgumentException
 
-class ConfigDB(private val context: Context) {
+class ConfigDB(context: Context) {
     private var db: SQLiteDatabase? = ConfigDBHelper(context).writableDatabase
 
     companion object {
@@ -13,6 +13,11 @@ class ConfigDB(private val context: Context) {
         private const val KEY_ID = ConfigDBHelper.DB_KEY_ID
         private const val KEY_VALUE = ConfigDBHelper.DB_KEY_VALUE
         private const val KEY_ARGUMENT = ConfigDBHelper.DB_KEY_ARGUMENT
+
+        const val VALUE_HAIR_TYPE = ConfigDBHelper.DB_VALUE_HAIR_TYPE
+        const val VALUE_HAIR_LENGTH = ConfigDBHelper.DB_VALUE_HAIR_LENGTH
+        const val VALUE_LAST_WASHING = ConfigDBHelper.DB_VALUE_LAST_WASHING
+        const val VALUE_TIME_RANGE = ConfigDBHelper.DB_VALUE_TIME_RANGE
     }
 
     fun close() { db?.close() }

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
-import io.hairwashing.TimeRange
+import io.hairwashing.structure.dependences.TimeRange
 import io.hairwashing.tools.adapter.WeeklyAdapter
 
 class WeeklyFragment : Fragment() {

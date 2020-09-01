@@ -1,12 +1,5 @@
 package io.hairwashing.tools
 
-import io.hairwashing.TimeRange
-import io.hairwashing.structure.dependences.Hair
-import io.hairwashing.tools.adapter.WeeklyAdapter
-import java.io.BufferedWriter
-import java.io.FileOutputStream
-import java.io.OutputStreamWriter
-
 object HairTypes {
     const val DRY = "dry"
     const val REGULAR = "regular"

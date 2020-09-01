@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
-import io.hairwashing.TimeRange
+import io.hairwashing.structure.dependences.TimeRange
 import io.hairwashing.db.ConfigDB
 import io.hairwashing.structure.fragment.SetupFragment
 import io.hairwashing.structure.fragment.WeeklyFragment
@@ -22,27 +22,27 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
         initFragments()
-        adjustSetupFragment()
-        updateWeeklyAdapter()
         disableWashedButtonIfWashedToday()
     }
 
     private fun initFragments() {
-        setupFragment = supportFragmentManager.findFragmentById(R.id.setup_fragment) as SetupFragment
-        weeklyFragment = supportFragmentManager.findFragmentById(R.id.weekly_list_fragment) as WeeklyFragment
+        setupFragment = supportFragmentManager
+            .findFragmentById(R.id.setup_fragment) as SetupFragment
+        initSetupFragment()
+        weeklyFragment = supportFragmentManager
+            .findFragmentById(R.id.weekly_list_fragment) as WeeklyFragment
+        updateWeeklyAdapter()
     }
 
-    private fun adjustSetupFragment() {
-        val hair = Hair.fromDB(this)
-        val timeRange = TimeRange.fromDB(this)
-        setupFragment.hair = hair
-        setupFragment.timeRange = timeRange
-        setupFragment.listener = object : SetupFragment.Listener {
-            override fun updateConfig() {
-                updateConfigFor(setupFragment.hair, setupFragment.timeRange)
+    private fun initSetupFragment() {
+        val activity = this
+        setupFragment.run {
+            hair = Hair.fromDB(activity)
+            timeRange = TimeRange.fromDB(activity)
+            listener = object : SetupFragment.Listener {
+                override fun updateConfig() = updateConfigFor(hair, timeRange)
+                override fun updateWeeklyAdapter() = activity.updateWeeklyAdapter()
             }
-
-            override fun updateWeeklyAdapter() { this@HomeActivity.updateWeeklyAdapter() }
         }
     }
 

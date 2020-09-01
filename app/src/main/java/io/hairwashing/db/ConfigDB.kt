@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import io.hairwashing.TimeRange
+import io.hairwashing.structure.dependences.TimeRange
 import io.hairwashing.structure.dependences.Hair
 import java.lang.IllegalArgumentException
 

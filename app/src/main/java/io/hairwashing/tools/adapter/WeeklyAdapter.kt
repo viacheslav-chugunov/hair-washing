@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import io.hairwashing.R
-import io.hairwashing.TimeRange
+import io.hairwashing.structure.dependences.TimeRange
 import io.hairwashing.structure.dependences.Hair
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

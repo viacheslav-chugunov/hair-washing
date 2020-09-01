@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
-import io.hairwashing.TimeRange
+import io.hairwashing.structure.dependences.TimeRange
 import kotlinx.android.synthetic.main.fragment_setup.*
 
 class SetupFragment : Fragment() {

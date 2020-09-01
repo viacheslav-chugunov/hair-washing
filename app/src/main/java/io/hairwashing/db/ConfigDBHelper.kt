@@ -49,6 +49,6 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        db?.execSQL("drop table if exists $DB_TABLE_NAME")
     }
 }

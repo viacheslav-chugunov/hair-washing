@@ -10,13 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import io.hairwashing.R
 import io.hairwashing.TimeRange
 import io.hairwashing.structure.dependences.Hair
-import io.hairwashing.tools.SetupFile
-import java.io.BufferedReader
-import java.io.FileInputStream
-import java.io.InputStreamReader
-import java.time.DayOfWeek
 import java.time.LocalDate
-import java.time.Month
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*

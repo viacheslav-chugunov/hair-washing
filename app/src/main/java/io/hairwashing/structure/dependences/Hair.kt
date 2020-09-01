@@ -1,11 +1,10 @@
 package io.hairwashing.structure.dependences
 
-import io.hairwashing.tools.SetupFile.FileData.HairTypes
-import io.hairwashing.tools.SetupFile.FileData.HairLengths
-import io.hairwashing.tools.SetupFile.FileData.NEVER_WASHING
-import java.io.BufferedReader
-import java.io.FileInputStream
-import java.io.InputStreamReader
+import android.content.Context
+import io.hairwashing.db.ConfigDB
+import io.hairwashing.tools.HairLengths
+import io.hairwashing.tools.HairTypes
+import io.hairwashing.tools.NEVER_WASHING
 import java.time.LocalDate
 
 class Hair(var type: Type, var length: Length, var lastWashing: LocalDate) {
@@ -25,57 +24,40 @@ class Hair(var type: Type, var length: Length, var lastWashing: LocalDate) {
     companion object {
         private val NEVER_WASHING_DATE = LocalDate.now().minusDays(7)
 
-        fun asDefault() = Hair(
-            Type.REGULAR,
-            Length.LONG,
-            NEVER_WASHING_DATE
-        )
+        fun asDefault() = Hair(Type.REGULAR, Length.LONG, NEVER_WASHING_DATE)
 
-        fun from(inputStream: FileInputStream) : Hair {
-            val reader = BufferedReader(InputStreamReader(inputStream))
-            val lines = reader.readLines()
-            reader.close()
-            val type = getTypeFromSetupLine(lines[0])
-            val length = getLengthFromSetupLine(lines[1])
-            val lastWashing = getLastWashingFromSetupLine(lines[2])
+        fun fromDB(context: Context) : Hair {
+            val db = ConfigDB(context)
+            val v = ConfigDB.Companion
+            val type = getTypeBy(db.getArgBy(v.VALUE_HAIR_TYPE))
+            val length = getLengthBy(db.getArgBy(v.VALUE_HAIR_LENGTH))
+            val lastWashing = getLastWashingBy(db.getArgBy(v.VALUE_LAST_WASHING))
+            db.close()
             return Hair(type, length, lastWashing)
         }
 
-        private fun getTypeFromSetupLine(line: String) = when(getValueFromSetupLine(
-            line
-        )) {
+        private fun getTypeBy(arg: String) = when(arg) {
             HairTypes.DRY -> Type.DRY
             HairTypes.REGULAR -> Type.REGULAR
             HairTypes.OILY -> Type.OILY
-            else -> throw IllegalArgumentException("Unknown Hair.Type in line: $line")
+            else -> throw IllegalArgumentException("Unknown Hair.Type in $arg")
         }
 
-        private fun getLengthFromSetupLine(line: String) = when(getValueFromSetupLine(
-            line
-        )) {
+        private fun getLengthBy(arg: String) = when(arg) {
             HairLengths.SHORT -> Length.SHORT
             HairLengths.MIDDLE -> Length.MIDDLE
             HairLengths.LONG -> Length.LONG
-            else -> throw IllegalArgumentException("Unknown Hair.Length in line: $line")
+            else -> throw IllegalArgumentException("Unknown Hair.Length in $arg")
         }
 
-        private fun getLastWashingFromSetupLine(line: String) : LocalDate {
-            val date =
-                getValueFromSetupLine(
-                    getValueFromSetupLine(
-                        line
-                    )
-                )
-            return if (date != NEVER_WASHING) {
-                val (year, month, day) = date.split("-").map { it.toInt() }
-                println(date)
+        private fun getLastWashingBy(arg: String) : LocalDate {
+            return if (arg != NEVER_WASHING) {
+                val (year, month, day) = arg.split("-").map { it.toInt() }
                 LocalDate.of(year, month, day)
             } else {
                 NEVER_WASHING_DATE
             }
         }
-
-        private fun getValueFromSetupLine(line: String) = line.split(":").last()
     }
 
     fun switchTypeToNext() {

@@ -16,7 +16,7 @@ class SetupFragment : Fragment() {
     var listener: Listener? = null
 
     interface Listener {
-        fun updateSetupFile()
+        fun updateConfig()
         fun updateWeeklyAdapter()
     }
 
@@ -96,7 +96,7 @@ class SetupFragment : Fragment() {
         hair.switchTypeToNext()
         updateTypeButtonImage()
         updateTypeTextView()
-        listener?.updateSetupFile()
+        listener?.updateConfig()
         listener?.updateWeeklyAdapter()
     }
 
@@ -104,7 +104,7 @@ class SetupFragment : Fragment() {
         timeRange = timeRange.getNext()
         updateTimeRangeButtonImage()
         updateTimeRangeTextView()
-        listener?.updateSetupFile()
+        listener?.updateConfig()
         listener?.updateWeeklyAdapter()
     }
 
@@ -112,7 +112,7 @@ class SetupFragment : Fragment() {
         hair.switchLengthToNext()
         updateLengthButtonImage()
         updateLengthTextView()
-        listener?.updateSetupFile()
+        listener?.updateConfig()
         listener?.updateWeeklyAdapter()
     }
 }

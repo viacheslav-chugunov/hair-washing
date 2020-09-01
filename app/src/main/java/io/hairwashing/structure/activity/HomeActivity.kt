@@ -1,6 +1,5 @@
 package io.hairwashing.structure.activity
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,7 +9,6 @@ import io.hairwashing.TimeRange
 import io.hairwashing.db.ConfigDB
 import io.hairwashing.structure.fragment.SetupFragment
 import io.hairwashing.structure.fragment.WeeklyFragment
-import io.hairwashing.tools.SetupFile
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.time.LocalDate
@@ -23,16 +21,10 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
-        initSetupFile()
         initFragments()
         adjustSetupFragment()
         updateWeeklyAdapter()
         disableWashedButtonIfWashedToday()
-    }
-
-    private fun initSetupFile() {
-        if (!SetupFile.existsIn(fileList()))
-            SetupFile.initFrom(openFileOutput(SetupFile.FileData.FILE_NAME, Context.MODE_PRIVATE))
     }
 
     private fun initFragments() {
@@ -41,22 +33,23 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun adjustSetupFragment() {
-        val hair = Hair.from(openFileInput(SetupFile.FileData.FILE_NAME))
-        val timeRange = TimeRange.from(openFileInput(SetupFile.FileData.FILE_NAME))
+        val hair = Hair.fromDB(this)
+        val timeRange = TimeRange.fromDB(this)
         setupFragment.hair = hair
         setupFragment.timeRange = timeRange
         setupFragment.listener = object : SetupFragment.Listener {
-            override fun updateSetupFile() {
-                updateSetupFileFor(setupFragment.hair, setupFragment.timeRange)
+            override fun updateConfig() {
+                updateConfigFor(setupFragment.hair, setupFragment.timeRange)
             }
 
             override fun updateWeeklyAdapter() { this@HomeActivity.updateWeeklyAdapter() }
         }
     }
 
-    private fun updateSetupFileFor(hair: Hair, timeRange: TimeRange) {
-        SetupFile.updateValuesFromStream(openFileOutput(SetupFile.FileData.FILE_NAME, Context.MODE_PRIVATE),
-            hair,timeRange)
+    private fun updateConfigFor(hair: Hair, timeRange: TimeRange) {
+        val db = ConfigDB(this)
+        db.updateBy(hair, timeRange)
+        db.close()
     }
 
     private fun updateWeeklyAdapter() {
@@ -66,7 +59,7 @@ class HomeActivity : AppCompatActivity() {
     fun onClickWashedButton(view: View) {
         val hair = setupFragment.hair.apply { lastWashing = LocalDate.now() }
         val timeRange = setupFragment.timeRange
-        updateSetupFileFor(hair, timeRange)
+        updateConfigFor(hair, timeRange)
         updateWeeklyAdapter()
         disableWashedButtonIfWashedToday()
     }

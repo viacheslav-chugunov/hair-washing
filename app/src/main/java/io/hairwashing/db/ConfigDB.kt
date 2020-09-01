@@ -1,12 +1,15 @@
 package io.hairwashing.db
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import io.hairwashing.TimeRange
+import io.hairwashing.structure.dependences.Hair
 import java.lang.IllegalArgumentException
 
 class ConfigDB(context: Context) {
-    private var db: SQLiteDatabase? = ConfigDBHelper(context).writableDatabase
+    private var db: SQLiteDatabase = ConfigDBHelper(context).writableDatabase
 
     companion object {
         private const val TABLE_NAME = ConfigDBHelper.DB_TABLE_NAME
@@ -20,21 +23,9 @@ class ConfigDB(context: Context) {
         const val VALUE_TIME_RANGE = ConfigDBHelper.DB_VALUE_TIME_RANGE
     }
 
-    fun close() { db?.close() }
+    fun close() { db.close() }
 
-    fun getValues() : List<String> {
-        val cursor = getQueryBy(KEY_VALUE)
-        val values = mutableListOf<String>()
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                values += cursor.getString(cursor.getColumnIndex(KEY_VALUE))
-            } while (cursor.moveToNext())
-            cursor.close()
-        }
-        return values
-    }
-
-    fun getArgumentBy(value: String) : String {
+    fun getArgBy(value: String) : String {
         val cursor = getQueryBy(KEY_VALUE, KEY_ARGUMENT)
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -49,7 +40,29 @@ class ConfigDB(context: Context) {
     }
 
     private fun getQueryBy(vararg columns: String) : Cursor? {
-        return db?.query(TABLE_NAME, columns, null,
+        return db.query(TABLE_NAME, columns, null,
             null, null, null, null)
+    }
+
+    fun updateBy(hair: Hair, timeRange: TimeRange) {
+        updateHairTypeBy(hair.type.view)
+        updateHairLengthBy(hair.length.view)
+        updateLastWashingBy(hair.lastWashing.toString())
+        updateTimeRangeBy(timeRange.view)
+    }
+
+    fun updateHairTypeBy(arg: String) = updateBy(VALUE_HAIR_TYPE, arg)
+
+    fun updateHairLengthBy(arg: String) = updateBy(VALUE_HAIR_LENGTH, arg)
+
+    fun updateLastWashingBy(arg: String) = updateBy(VALUE_LAST_WASHING, arg)
+
+    fun updateTimeRangeBy(arg: String) = updateBy(VALUE_TIME_RANGE, arg)
+
+    private fun updateBy(value: String, arg: String) {
+        val content = ContentValues().apply {
+            put(KEY_ARGUMENT, arg)
+        }
+        db.update(TABLE_NAME, content, "$KEY_VALUE = ?", arrayOf(value))
     }
 }

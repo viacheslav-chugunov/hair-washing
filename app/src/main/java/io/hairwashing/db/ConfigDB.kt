@@ -52,11 +52,8 @@ class ConfigDB(context: Context) {
     }
 
     fun updateHairTypeBy(arg: String) = updateBy(VALUE_HAIR_TYPE, arg)
-
     fun updateHairLengthBy(arg: String) = updateBy(VALUE_HAIR_LENGTH, arg)
-
     fun updateLastWashingBy(arg: String) = updateBy(VALUE_LAST_WASHING, arg)
-
     fun updateTimeRangeBy(arg: String) = updateBy(VALUE_TIME_RANGE, arg)
 
     private fun updateBy(value: String, arg: String) {

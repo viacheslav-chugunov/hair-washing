@@ -7,7 +7,7 @@ import io.hairwashing.tools.HairTypes
 import io.hairwashing.tools.NEVER_WASHING
 import java.time.LocalDate
 
-class Hair(var type: Type, var length: Length, var lastWashing: LocalDate) {
+class Hair private constructor(var type: Type, var length: Length, var lastWashing: LocalDate) {
 
     enum class Type(val view: String) {
         DRY(HairTypes.DRY),
@@ -64,7 +64,7 @@ class Hair(var type: Type, var length: Length, var lastWashing: LocalDate) {
         type = when(type) {
             Type.REGULAR -> Type.OILY
             Type.OILY -> Type.DRY
-            else -> Type.REGULAR
+            Type.DRY -> Type.REGULAR
         }
     }
 
@@ -72,7 +72,7 @@ class Hair(var type: Type, var length: Length, var lastWashing: LocalDate) {
         length = when(length) {
             Length.MIDDLE -> Length.LONG
             Length.LONG -> Length.SHORT
-            else -> Length.MIDDLE
+            Length.SHORT -> Length.MIDDLE
         }
     }
 
@@ -87,21 +87,20 @@ class Hair(var type: Type, var length: Length, var lastWashing: LocalDate) {
         return lastWashing.plusDays(getWashingBreakInDays().toLong())
     }
 
-    private fun getWashingBreakInDays() : Int = when (length) {
-        Length.SHORT -> when(type) {
-            Type.DRY -> 5
-            Type.REGULAR -> 3
-            else -> 1
-        }
-        Length.MIDDLE -> when(type) {
-            Type.DRY -> 6
-            Type.REGULAR -> 3
-            else -> 2
-        }
-        else -> when(type) {
+    private fun getWashingBreakInDays() : Int {
+        val typeWeight = when(type) {
             Type.DRY -> 7
             Type.REGULAR -> 4
-            else -> 2
+            Type.OILY -> 3
         }
+        val lengthWeight = when(length) {
+            Length.SHORT -> -2
+            Length.MIDDLE -> -1
+            Length.LONG -> 0
+        }
+        var breakInDays = typeWeight + lengthWeight
+        if (breakInDays < 1)
+            breakInDays = 1
+        return breakInDays
     }
 }

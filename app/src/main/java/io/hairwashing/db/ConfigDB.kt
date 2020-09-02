@@ -48,12 +48,14 @@ class ConfigDB(context: Context) {
     fun updateBy(hair: Hair, timeRange: TimeRange) {
         updateHairTypeBy(hair.type.view)
         updateHairLengthBy(hair.length.view)
+        updateClimateBy(hair.climate.view)
         updateLastWashingBy(hair.lastWashing.toString())
         updateTimeRangeBy(timeRange.view)
     }
 
     fun updateHairTypeBy(arg: String) = updateBy(VALUE_HAIR_TYPE, arg)
     fun updateHairLengthBy(arg: String) = updateBy(VALUE_HAIR_LENGTH, arg)
+    fun updateClimateBy(arg: String) = updateBy(VALUE_CLIMATE, arg)
     fun updateLastWashingBy(arg: String) = updateBy(VALUE_LAST_WASHING, arg)
     fun updateTimeRangeBy(arg: String) = updateBy(VALUE_TIME_RANGE, arg)
 

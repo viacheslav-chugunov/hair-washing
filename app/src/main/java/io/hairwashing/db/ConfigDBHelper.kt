@@ -32,9 +32,7 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         db?.execSQL("create table $DB_TABLE_NAME($DB_KEY_ID integer primary key autoincrement, " +
                 "$DB_KEY_VALUE text, " +
                 "$DB_KEY_ARGUMENT text);")
-
-        if (db != null)
-            initDBWithDefaultArgs()
+        initDBWithDefaultArgs()
     }
 
     private fun initDBWithDefaultArgs() {

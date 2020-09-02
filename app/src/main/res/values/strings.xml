@@ -16,4 +16,8 @@
     <string name="one_week">Week</string>
     <string name="two_weeks">2 weeks</string>
     <string name="month">Month</string>
+    <string name="type">Type</string>
+    <string name="length">Length</string>
+    <string name="climate">Climate</string>
+    <string name="range">Range</string>
 </resources>

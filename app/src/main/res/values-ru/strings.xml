@@ -17,4 +17,8 @@
     <string name="one_week">Неделя</string>
     <string name="two_weeks">2 недели</string>
     <string name="month">Месяц</string>
+    <string name="type">Тип</string>
+    <string name="length">Длинна</string>
+    <string name="climate">Климат</string>
+    <string name="range">Диапазон</string>
 </resources>

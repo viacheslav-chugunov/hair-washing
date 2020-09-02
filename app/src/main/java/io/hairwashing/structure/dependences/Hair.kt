@@ -4,7 +4,8 @@ import android.content.Context
 import io.hairwashing.db.ConfigDB
 import java.time.LocalDate
 
-class Hair private constructor(var type: Type, var length: Length, var lastWashing: LocalDate) {
+class Hair private constructor(var type: Type, var length: Length,
+                               var climate: Climate, var lastWashing: LocalDate) {
 
     enum class Type(val view: String) {
         DRY("dry"),
@@ -18,19 +19,26 @@ class Hair private constructor(var type: Type, var length: Length, var lastWashi
         LONG("long")
     }
 
+    enum class Climate(val view: String) {
+        FRIGID("frigid"),
+        SIMPLE("simple"),
+        HOT("hot")
+    }
+
     companion object {
         val NEVER_WASHING_DATE: LocalDate = LocalDate.now().minusDays(7)
 
-        fun asDefault() = Hair(Type.REGULAR, Length.LONG, NEVER_WASHING_DATE)
+        fun asDefault() = Hair(Type.REGULAR, Length.LONG, Climate.FRIGID, NEVER_WASHING_DATE)
 
         fun fromDB(context: Context) : Hair {
             val db = ConfigDB(context)
             val v = ConfigDB.Companion
             val type = getTypeBy(db.getArgBy(v.VALUE_HAIR_TYPE))
             val length = getLengthBy(db.getArgBy(v.VALUE_HAIR_LENGTH))
+            val climate = getClimateBy(db.getArgBy(v.VALUE_CLIMATE))
             val lastWashing = getLastWashingBy(db.getArgBy(v.VALUE_LAST_WASHING))
             db.close()
-            return Hair(type, length, lastWashing)
+            return Hair(type, length, climate, lastWashing)
         }
 
         private fun getTypeBy(arg: String) = when(arg) {
@@ -45,6 +53,13 @@ class Hair private constructor(var type: Type, var length: Length, var lastWashi
             Length.MIDDLE.view -> Length.MIDDLE
             Length.LONG.view -> Length.LONG
             else -> throw IllegalArgumentException("Unknown Hair.Length in $arg")
+        }
+
+        private fun getClimateBy(arg: String) = when(arg) {
+            Climate.FRIGID.view -> Climate.FRIGID
+            Climate.SIMPLE.view -> Climate.SIMPLE
+            Climate.HOT.view -> Climate.HOT
+            else -> throw IllegalArgumentException("Unknown Hair.Climate in $arg")
         }
 
         private fun getLastWashingBy(arg: String) : LocalDate {
@@ -66,6 +81,14 @@ class Hair private constructor(var type: Type, var length: Length, var lastWashi
             Length.MIDDLE -> Length.LONG
             Length.LONG -> Length.SHORT
             Length.SHORT -> Length.MIDDLE
+        }
+    }
+
+    fun switchClimateToNext() {
+        climate = when(climate) {
+            Climate.FRIGID -> Climate.SIMPLE
+            Climate.SIMPLE -> Climate.HOT
+            Climate.HOT -> Climate.FRIGID
         }
     }
 

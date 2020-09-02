@@ -19,6 +19,7 @@ class ConfigDB(context: Context) {
 
         const val VALUE_HAIR_TYPE = ConfigDBHelper.DB_VALUE_HAIR_TYPE
         const val VALUE_HAIR_LENGTH = ConfigDBHelper.DB_VALUE_HAIR_LENGTH
+        const val VALUE_CLIMATE = ConfigDBHelper.DB_VALUE_CLIMATE
         const val VALUE_LAST_WASHING = ConfigDBHelper.DB_VALUE_LAST_WASHING
         const val VALUE_TIME_RANGE = ConfigDBHelper.DB_VALUE_TIME_RANGE
     }

@@ -22,6 +22,7 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         const val DB_VALUE_HAIR_TYPE = "hair_type"
         const val DB_VALUE_HAIR_LENGTH = "hair_length"
         const val DB_VALUE_LAST_WASHING = "last_washing"
+        const val DB_VALUE_CLIMATE = "climate"
         const val DB_VALUE_TIME_RANGE = "time_range"
     }
 
@@ -34,13 +35,15 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
     }
 
     private fun initDBWithDefaultArgs() {
-        val hairType = Hair.Type.DRY.toString()
+        val hairType = Hair.Type.DRY.view
         insertLine(DB_VALUE_HAIR_TYPE, hairType)
-        val hairLength = Hair.Length.SHORT.toString()
+        val hairLength = Hair.Length.SHORT.view
         insertLine(DB_VALUE_HAIR_LENGTH, hairLength)
         val lastWashing = Hair.NEVER_WASHING_DATE.toString()
         insertLine(DB_VALUE_LAST_WASHING, lastWashing)
-        val timeRange = TimeRange.ONE_WEEK.toString()
+        val climate = Hair.Climate.FRIGID.view
+        insertLine(DB_VALUE_CLIMATE, climate)
+        val timeRange = TimeRange.ONE_WEEK.view
         insertLine(DB_VALUE_TIME_RANGE, timeRange)
     }
 
@@ -54,5 +57,6 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("drop table if exists $DB_TABLE_NAME")
+        onCreate(db)
     }
 }

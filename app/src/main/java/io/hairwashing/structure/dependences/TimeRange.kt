@@ -2,12 +2,11 @@ package io.hairwashing.structure.dependences
 
 import android.content.Context
 import io.hairwashing.db.ConfigDB
-import io.hairwashing.tools.TimeRanges
 
 enum class TimeRange(val days: Int, val view: String) {
-    ONE_WEEK(7, TimeRanges.ONE_WEEK),
-    TWO_WEEKS(14, TimeRanges.TWO_WEEKS),
-    MONTH(30, TimeRanges.MONTH);
+    ONE_WEEK(7, "one_week"),
+    TWO_WEEKS(14, "two_weeks"),
+    MONTH(30, "month");
 
     companion object {
 
@@ -20,8 +19,8 @@ enum class TimeRange(val days: Int, val view: String) {
         }
 
         private fun getTimeRangeBy(arg: String) = when(arg) {
-            TimeRanges.ONE_WEEK -> ONE_WEEK
-            TimeRanges.TWO_WEEKS -> TWO_WEEKS
+            ONE_WEEK.view -> ONE_WEEK
+            TWO_WEEKS.view -> TWO_WEEKS
             else -> MONTH
         }
     }

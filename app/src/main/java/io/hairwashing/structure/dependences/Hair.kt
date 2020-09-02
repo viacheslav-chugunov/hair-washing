@@ -2,27 +2,24 @@ package io.hairwashing.structure.dependences
 
 import android.content.Context
 import io.hairwashing.db.ConfigDB
-import io.hairwashing.tools.HairLengths
-import io.hairwashing.tools.HairTypes
-import io.hairwashing.tools.NEVER_WASHING
 import java.time.LocalDate
 
 class Hair private constructor(var type: Type, var length: Length, var lastWashing: LocalDate) {
 
     enum class Type(val view: String) {
-        DRY(HairTypes.DRY),
-        REGULAR(HairTypes.REGULAR),
-        OILY(HairTypes.OILY)
+        DRY("dry"),
+        REGULAR("regular"),
+        OILY("oily")
     }
 
     enum class Length(val view: String) {
-        SHORT(HairLengths.SHORT),
-        MIDDLE(HairLengths.MIDDLE),
-        LONG(HairLengths.LONG)
+        SHORT("short"),
+        MIDDLE("middle"),
+        LONG("long")
     }
 
     companion object {
-        private val NEVER_WASHING_DATE = LocalDate.now().minusDays(7)
+        val NEVER_WASHING_DATE: LocalDate = LocalDate.now().minusDays(7)
 
         fun asDefault() = Hair(Type.REGULAR, Length.LONG, NEVER_WASHING_DATE)
 
@@ -37,26 +34,22 @@ class Hair private constructor(var type: Type, var length: Length, var lastWashi
         }
 
         private fun getTypeBy(arg: String) = when(arg) {
-            HairTypes.DRY -> Type.DRY
-            HairTypes.REGULAR -> Type.REGULAR
-            HairTypes.OILY -> Type.OILY
+            Type.DRY.view -> Type.DRY
+            Type.REGULAR.view -> Type.REGULAR
+            Type.OILY.view -> Type.OILY
             else -> throw IllegalArgumentException("Unknown Hair.Type in $arg")
         }
 
         private fun getLengthBy(arg: String) = when(arg) {
-            HairLengths.SHORT -> Length.SHORT
-            HairLengths.MIDDLE -> Length.MIDDLE
-            HairLengths.LONG -> Length.LONG
+            Length.SHORT.view -> Length.SHORT
+            Length.MIDDLE.view -> Length.MIDDLE
+            Length.LONG.view -> Length.LONG
             else -> throw IllegalArgumentException("Unknown Hair.Length in $arg")
         }
 
         private fun getLastWashingBy(arg: String) : LocalDate {
-            return if (arg != NEVER_WASHING) {
-                val (year, month, day) = arg.split("-").map { it.toInt() }
-                LocalDate.of(year, month, day)
-            } else {
-                NEVER_WASHING_DATE
-            }
+            val (year, month, day) = arg.split("-").map { it.toInt() }
+            return LocalDate.of(year, month, day)
         }
     }
 

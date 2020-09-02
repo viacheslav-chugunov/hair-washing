@@ -4,10 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import io.hairwashing.tools.HairLengths
-import io.hairwashing.tools.HairTypes
-import io.hairwashing.tools.NEVER_WASHING
-import io.hairwashing.tools.TimeRanges
+import io.hairwashing.structure.dependences.Hair
+import io.hairwashing.structure.dependences.TimeRange
 
 class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     private var db: SQLiteDatabase? = null
@@ -36,10 +34,14 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
     }
 
     private fun initDBWithDefaultArgs() {
-        insertLine(DB_VALUE_HAIR_TYPE, HairTypes.DRY)
-        insertLine(DB_VALUE_HAIR_LENGTH, HairLengths.SHORT)
-        insertLine(DB_VALUE_LAST_WASHING, NEVER_WASHING)
-        insertLine(DB_VALUE_TIME_RANGE,TimeRanges.ONE_WEEK)
+        val hairType = Hair.Type.DRY.toString()
+        insertLine(DB_VALUE_HAIR_TYPE, hairType)
+        val hairLength = Hair.Length.SHORT.toString()
+        insertLine(DB_VALUE_HAIR_LENGTH, hairLength)
+        val lastWashing = Hair.NEVER_WASHING_DATE.toString()
+        insertLine(DB_VALUE_LAST_WASHING, lastWashing)
+        val timeRange = TimeRange.ONE_WEEK.toString()
+        insertLine(DB_VALUE_TIME_RANGE, timeRange)
     }
 
     private fun insertLine(value: String, argument: String) {

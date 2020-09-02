@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".structure.fragment.SetupFragment">
+    tools:context=".structure.fragment.SetupFragment"
+    android:scrollbars="none" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/hair_type_button"
-            app:layout_constraintStart_toEndOf="@+id/hair_type_button"
+            app:layout_constraintStart_toEndOf="@+id/hair_climate_button"
             app:layout_constraintTop_toTopOf="@+id/hair_type_button" />
 
         <ImageButton
@@ -36,7 +37,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/hair_type_button"
-            app:layout_constraintStart_toEndOf="@+id/time_range_button"
+            app:layout_constraintStart_toEndOf="@+id/hair_type_button"
             app:layout_constraintTop_toTopOf="@+id/hair_type_button" />
 
         <ImageButton
@@ -75,5 +76,14 @@
             app:layout_constraintEnd_toEndOf="@+id/hair_length_button"
             app:layout_constraintStart_toStartOf="@+id/hair_length_button"
             app:layout_constraintTop_toBottomOf="@+id/hair_length_button" />
+
+        <TextView
+            android:id="@+id/hair_climate_text_view"
+            style="@style/SmallText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/hair_climate_button"
+            app:layout_constraintStart_toStartOf="@+id/hair_climate_button"
+            app:layout_constraintTop_toBottomOf="@+id/hair_climate_button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </HorizontalScrollView>

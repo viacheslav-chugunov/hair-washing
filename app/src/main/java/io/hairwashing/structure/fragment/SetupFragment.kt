@@ -30,12 +30,15 @@ class SetupFragment : Fragment() {
         updateTypeButtonImage()
         updateTimeRangeButtonImage()
         updateLengthButtonImage()
+        updateClimateButtonImage()
         updateTypeTextView()
         updateTimeRangeTextView()
         updateLengthTextView()
+        updateClimateTextView()
         hair_type_button.setOnClickListener { onClickTypeButton() }
         time_range_button.setOnClickListener { onClickTimeRangeButton() }
         hair_length_button.setOnClickListener { onClickLengthButton() }
+        hair_climate_button.setOnClickListener { onClickClimateButton() }
     }
 
     private fun updateTypeButtonImage() {
@@ -65,6 +68,15 @@ class SetupFragment : Fragment() {
         hair_length_button.setImageDrawable(context?.getDrawable(drawableRes))
     }
 
+    private fun updateClimateButtonImage() {
+        val drawableRes = when(hair.climate) {
+            Hair.Climate.FRIGID -> R.drawable.frigid_climate
+            Hair.Climate.SIMPLE -> R.drawable.simple_climate
+            else -> R.drawable.hot_climate
+        }
+        hair_climate_button.setImageDrawable(context?.getDrawable(drawableRes))
+    }
+
     private fun updateTypeTextView() {
         val stringRes = when(hair.type) {
             Hair.Type.DRY -> R.string.dry_hair
@@ -92,26 +104,44 @@ class SetupFragment : Fragment() {
         hair_length_text_view.text = getString(stringRes)
     }
 
+    private fun updateClimateTextView() {
+        val stringRes = when(hair.climate) {
+            Hair.Climate.FRIGID -> R.string.frigid_climate
+            Hair.Climate.SIMPLE -> R.string.simple_climate
+            else -> R.string.hot_climate
+        }
+        hair_climate_text_view.text = getString(stringRes)
+    }
+
     private fun onClickTypeButton() {
         hair.switchTypeToNext()
         updateTypeButtonImage()
         updateTypeTextView()
-        listener?.updateConfig()
-        listener?.updateWeeklyAdapter()
+        callUpdatesFromListener()
     }
 
     private fun onClickTimeRangeButton() {
         timeRange = timeRange.getNext()
         updateTimeRangeButtonImage()
         updateTimeRangeTextView()
-        listener?.updateConfig()
-        listener?.updateWeeklyAdapter()
+        callUpdatesFromListener()
     }
 
     private fun onClickLengthButton() {
         hair.switchLengthToNext()
         updateLengthButtonImage()
         updateLengthTextView()
+        callUpdatesFromListener()
+    }
+
+    private fun onClickClimateButton() {
+        hair.switchClimateToNext()
+        updateClimateButtonImage()
+        updateClimateTextView()
+        callUpdatesFromListener()
+    }
+
+    private fun callUpdatesFromListener() {
         listener?.updateConfig()
         listener?.updateWeeklyAdapter()
     }

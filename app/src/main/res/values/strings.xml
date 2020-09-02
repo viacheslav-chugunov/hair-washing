@@ -10,6 +10,9 @@
     <string name="short_hair">Short hair</string>
     <string name="middle_hair">Middle hair</string>
     <string name="long_hair">Long hair</string>
+    <string name="frigid_climate">Frigid</string>
+    <string name="simple_climate">Simple</string>
+    <string name="hot_climate">Hot</string>
     <string name="one_week">Week</string>
     <string name="two_weeks">2 weeks</string>
     <string name="month">Month</string>

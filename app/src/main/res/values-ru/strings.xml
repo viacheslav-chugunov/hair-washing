@@ -11,6 +11,9 @@
     <string name="short_hair">Короткие</string>
     <string name="middle_hair">Средние</string>
     <string name="long_hair">Длинные</string>
+    <string name="frigid_climate">Холодно</string>
+    <string name="simple_climate">Нормально</string>
+    <string name="hot_climate">Жарко</string>
     <string name="one_week">Неделя</string>
     <string name="two_weeks">2 недели</string>
     <string name="month">Месяц</string>

@@ -114,7 +114,12 @@ class Hair private constructor(var type: Type, var length: Length,
             Length.MIDDLE -> -1
             Length.LONG -> 0
         }
-        var breakInDays = typeWeight + lengthWeight
+        val climateWeight = when(climate) {
+            Climate.FRIGID -> 1
+            Climate.SIMPLE -> 0
+            Climate.HOT -> -1
+        }
+        var breakInDays = typeWeight + lengthWeight + climateWeight
         if (breakInDays < 1)
             breakInDays = 1
         return breakInDays

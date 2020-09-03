@@ -37,9 +37,9 @@ class WeeklyAdapter(private val hair: Hair, private val timeRange: TimeRange) :
         updateCurrentDayOfWeek()
     }
 
-    private fun updateCurrentDate() { currentDate = currentDate.plusDays(1) }
+        private fun updateCurrentDate() { currentDate = currentDate.plusDays(1) }
 
-    private fun updateCurrentDayOfWeek() { currentDayOfWeek = currentDayOfWeek.plus(1) }
+        private fun updateCurrentDayOfWeek() { currentDayOfWeek = currentDayOfWeek.plus(1) }
 
     override fun getItemCount() = timeRange.days
 
@@ -71,11 +71,11 @@ class WeeklyAdapter(private val hair: Hair, private val timeRange: TimeRange) :
             }
         }
 
+            private fun updateNextWashingDay() { nextWashingDay = hair.getWashingDayAfter(currentDate) }
+
         fun setDate() {
             val formatter = DateTimeFormatter.ofPattern("dd.MM.yy")
             date.text = currentDate.format(formatter)
         }
-
-        private fun updateNextWashingDay() { nextWashingDay = hair.getWashingDayAfter(currentDate) }
     }
 }

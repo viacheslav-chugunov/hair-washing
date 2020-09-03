@@ -18,11 +18,11 @@ enum class TimeRange(val days: Int, val view: String) {
             return timeRange
         }
 
-        private fun getTimeRangeBy(arg: String) = when(arg) {
-            ONE_WEEK.view -> ONE_WEEK
-            TWO_WEEKS.view -> TWO_WEEKS
-            else -> MONTH
-        }
+            private fun getTimeRangeBy(arg: String) = when(arg) {
+                ONE_WEEK.view -> ONE_WEEK
+                TWO_WEEKS.view -> TWO_WEEKS
+                else -> MONTH
+            }
     }
 
     fun getNext() = when(this) {

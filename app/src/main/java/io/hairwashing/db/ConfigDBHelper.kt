@@ -47,13 +47,13 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         insertLine(VALUE_SETUP_VISIBILITY, "true")
     }
 
-    private fun insertLine(value: String, argument: String) {
-        val content = ContentValues().apply {
-            put(KEY_VALUE, value)
-            put(KEY_ARGUMENT, argument)
+        private fun insertLine(value: String, argument: String) {
+            val content = ContentValues().apply {
+                put(KEY_VALUE, value)
+                put(KEY_ARGUMENT, argument)
+            }
+            db?.insert(TABLE_NAME, null, content)
         }
-        db?.insert(TABLE_NAME, null, content)
-    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("drop table if exists $TABLE_NAME")

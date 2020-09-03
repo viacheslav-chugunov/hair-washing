@@ -12,19 +12,19 @@ class ConfigDB(context: Context) {
     private var db: SQLiteDatabase = ConfigDBHelper(context).writableDatabase
 
     companion object {
-        private const val TABLE_NAME = ConfigDBHelper.DB_TABLE_NAME
-        private const val KEY_ID = ConfigDBHelper.DB_KEY_ID
-        private const val KEY_VALUE = ConfigDBHelper.DB_KEY_VALUE
-        private const val KEY_ARGUMENT = ConfigDBHelper.DB_KEY_ARGUMENT
+        const val TABLE_NAME = "config"
+        const val KEY_ID = "_id"
+        const val KEY_VALUE = "value"
+        const val KEY_ARGUMENT = "argument"
 
-        const val VALUE_HAIR_TYPE = ConfigDBHelper.DB_VALUE_HAIR_TYPE
-        const val VALUE_HAIR_LENGTH = ConfigDBHelper.DB_VALUE_HAIR_LENGTH
-        const val VALUE_CLIMATE = ConfigDBHelper.DB_VALUE_CLIMATE
-        const val VALUE_LAST_WASHING = ConfigDBHelper.DB_VALUE_LAST_WASHING
-        const val VALUE_TIME_RANGE = ConfigDBHelper.DB_VALUE_TIME_RANGE
+        const val VALUE_HAIR_TYPE = "hair_type"
+        const val VALUE_HAIR_LENGTH = "hair_length"
+        const val VALUE_CLIMATE = "climate"
+        const val VALUE_LAST_WASHING = "last_washing"
+        const val VALUE_TIME_RANGE = "time_range"
     }
 
-    fun close() { db.close() }
+    fun close() = db.close()
 
     fun getArgBy(value: String) : String {
         val cursor = getQueryBy(KEY_VALUE, KEY_ARGUMENT)

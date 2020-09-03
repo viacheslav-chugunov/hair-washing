@@ -1,21 +1,33 @@
 <resources>
     <string name="app_name">Hair Washing</string>
+
+    <!--  Washing permissions  -->
     <string name="wash_hair">Wash the hair</string>
     <string name="do_not_wash_hair">Don\'t wash the hair</string>
     <string name="hair_washed">Hair washed today</string>
     <string name="hair_already_washed">Hair is already washed</string>
+
+    <!--  Hair types  -->
     <string name="dry_hair">Dry hair</string>
     <string name="regular_hair">Regular hair</string>
     <string name="oily_hair">Oily hair</string>
+
+    <!--  Hair lengths  -->
     <string name="short_hair">Short hair</string>
     <string name="middle_hair">Middle hair</string>
     <string name="long_hair">Long hair</string>
+
+    <!--  Climates  -->
     <string name="frigid_climate">Frigid</string>
     <string name="simple_climate">Simple</string>
     <string name="hot_climate">Hot</string>
+
+    <!--  Time ranges  -->
     <string name="one_week">Week</string>
     <string name="two_weeks">2 weeks</string>
     <string name="month">Month</string>
+
+    <!--  Param labels  -->
     <string name="type">Type</string>
     <string name="length">Length</string>
     <string name="climate">Climate</string>

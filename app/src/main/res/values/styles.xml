@@ -5,6 +5,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/colorWindowBackground</item>
     </style>
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/toolbar_control_normal</item>
+        <item name="titleTextColor">@color/toolbar_control_normal</item>
+    </style>
     
     <style name="SmallText">
         <item name="android:textSize">13sp</item>

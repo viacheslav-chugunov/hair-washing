@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.fragment.app.FragmentTransaction
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
 import io.hairwashing.structure.dependences.TimeRange
@@ -108,6 +109,7 @@ class HomeActivity : AppCompatActivity() {
 
         private fun hideSetupFragment() {
             supportFragmentManager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .hide(setupFragment)
                 .commit()
             menu.findItem(R.id.hide_open_setup)
@@ -116,6 +118,7 @@ class HomeActivity : AppCompatActivity() {
 
         private fun showSetupFragment() {
             supportFragmentManager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .show(setupFragment)
                 .commit()
             menu.findItem(R.id.hide_open_setup)

@@ -41,31 +41,31 @@ class Hair private constructor(var type: Type, var length: Length,
             return Hair(type, length, climate, lastWashing)
         }
 
-        private fun getTypeBy(arg: String) = when(arg) {
-            Type.DRY.view -> Type.DRY
-            Type.REGULAR.view -> Type.REGULAR
-            Type.OILY.view -> Type.OILY
-            else -> throw IllegalArgumentException("Unknown Hair.Type in $arg")
-        }
+            private fun getTypeBy(arg: String) = when(arg) {
+                Type.DRY.view -> Type.DRY
+                Type.REGULAR.view -> Type.REGULAR
+                Type.OILY.view -> Type.OILY
+                else -> throw IllegalArgumentException("Unknown Hair.Type in $arg")
+            }
 
-        private fun getLengthBy(arg: String) = when(arg) {
-            Length.SHORT.view -> Length.SHORT
-            Length.MIDDLE.view -> Length.MIDDLE
-            Length.LONG.view -> Length.LONG
-            else -> throw IllegalArgumentException("Unknown Hair.Length in $arg")
-        }
+            private fun getLengthBy(arg: String) = when(arg) {
+                Length.SHORT.view -> Length.SHORT
+                Length.MIDDLE.view -> Length.MIDDLE
+                Length.LONG.view -> Length.LONG
+                else -> throw IllegalArgumentException("Unknown Hair.Length in $arg")
+            }
 
-        private fun getClimateBy(arg: String) = when(arg) {
-            Climate.FRIGID.view -> Climate.FRIGID
-            Climate.SIMPLE.view -> Climate.SIMPLE
-            Climate.HOT.view -> Climate.HOT
-            else -> throw IllegalArgumentException("Unknown Hair.Climate in $arg")
-        }
+            private fun getClimateBy(arg: String) = when(arg) {
+                Climate.FRIGID.view -> Climate.FRIGID
+                Climate.SIMPLE.view -> Climate.SIMPLE
+                Climate.HOT.view -> Climate.HOT
+                else -> throw IllegalArgumentException("Unknown Hair.Climate in $arg")
+            }
 
-        private fun getLastWashingBy(arg: String) : LocalDate {
-            val (year, month, day) = arg.split("-").map { it.toInt() }
-            return LocalDate.of(year, month, day)
-        }
+            private fun getLastWashingBy(arg: String) : LocalDate {
+                val (year, month, day) = arg.split("-").map { it.toInt() }
+                return LocalDate.of(year, month, day)
+            }
     }
 
     fun switchTypeToNext() {

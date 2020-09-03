@@ -55,16 +55,21 @@ class ConfigDB(context: Context) {
     }
 
     fun updateHairTypeBy(arg: String) = updateBy(VALUE_HAIR_TYPE, arg)
+
     fun updateHairLengthBy(arg: String) = updateBy(VALUE_HAIR_LENGTH, arg)
+
     fun updateClimateBy(arg: String) = updateBy(VALUE_CLIMATE, arg)
+
     fun updateLastWashingBy(arg: String) = updateBy(VALUE_LAST_WASHING, arg)
+
     fun updateTimeRangeBy(arg: String) = updateBy(VALUE_TIME_RANGE, arg)
+
     fun updateSetupVisibility(arg: String) = updateBy(VALUE_SETUP_VISIBILITY, arg)
 
-    private fun updateBy(value: String, arg: String) {
-        val content = ContentValues().apply {
-            put(KEY_ARGUMENT, arg)
+        private fun updateBy(value: String, arg: String) {
+            val content = ContentValues().apply {
+                put(KEY_ARGUMENT, arg)
+            }
+            db.update(TABLE_NAME, content, "$KEY_VALUE = ?", arrayOf(value))
         }
-        db.update(TABLE_NAME, content, "$KEY_VALUE = ?", arrayOf(value))
-    }
 }

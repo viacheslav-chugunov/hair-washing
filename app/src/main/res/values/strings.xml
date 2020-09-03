@@ -32,4 +32,8 @@
     <string name="length">Length</string>
     <string name="climate">Climate</string>
     <string name="range">Range</string>
+    
+    <!--  Menu items  -->
+    <string name="open_setup">Open setup</string>
+    <string name="hide_setup">Hide setup</string>
 </resources>

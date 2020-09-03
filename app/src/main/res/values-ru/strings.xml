@@ -33,4 +33,8 @@
     <string name="length">Длинна</string>
     <string name="climate">Климат</string>
     <string name="range">Диапазон</string>
+
+    <!--  Menu items  -->
+    <string name="open_setup">Раскрыть настройки</string>
+    <string name="hide_setup">Скрыть настройки</string>
 </resources>

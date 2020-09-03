@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hair Washing</string>
+    <string name="app_name">График мытья волос</string>
 
     <!--  Washing permissions  -->
     <string name="wash_hair">Помыть</string>

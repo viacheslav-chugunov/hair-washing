@@ -8,14 +8,14 @@
     <string name="hair_already_washed">Hair is already washed</string>
 
     <!--  Hair types  -->
-    <string name="dry_hair">Dry hair</string>
-    <string name="regular_hair">Regular hair</string>
-    <string name="oily_hair">Oily hair</string>
+    <string name="dry_hair">Dry</string>
+    <string name="regular_hair">Regular</string>
+    <string name="oily_hair">Oily</string>
 
     <!--  Hair lengths  -->
-    <string name="short_hair">Short hair</string>
-    <string name="middle_hair">Middle hair</string>
-    <string name="long_hair">Long hair</string>
+    <string name="short_hair">Short</string>
+    <string name="middle_hair">Middle</string>
+    <string name="long_hair">Long</string>
 
     <!--  Climates  -->
     <string name="frigid_climate">Frigid</string>

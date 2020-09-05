@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/hide_open_setup"
-        android:title="@string/open_setup"
+        android:title=""
         android:icon="@drawable/baseline_build_black_18dp"
         android:orderInCategory="1" />
 </menu>

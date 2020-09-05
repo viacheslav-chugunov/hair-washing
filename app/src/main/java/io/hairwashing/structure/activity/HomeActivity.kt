@@ -80,6 +80,8 @@ class HomeActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.home_menu, menu)
         if (!setupFragmentIsVisible())
             hideSetupFragment()
+        else
+            showSetupFragment()
         return super.onCreateOptionsMenu(menu)
     }
 

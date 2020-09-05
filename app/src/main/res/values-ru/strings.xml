@@ -30,7 +30,7 @@
 
     <!--  Param labels  -->
     <string name="type">Тип</string>
-    <string name="length">Длинна</string>
+    <string name="length">Длина</string>
     <string name="climate">Климат</string>
     <string name="range">Диапазон</string>
 

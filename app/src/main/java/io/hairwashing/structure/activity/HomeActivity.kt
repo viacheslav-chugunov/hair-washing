@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.fragment.app.FragmentTransaction
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
 import io.hairwashing.structure.dependences.TimeRange
@@ -42,8 +41,6 @@ class HomeActivity : AppCompatActivity() {
             private fun initSetupFragment() {
                 val activity = this
                 setupFragment.run {
-                    hair = Hair.fromDB(activity)
-                    timeRange = TimeRange.fromDB(activity)
                     listener = object : SetupFragment.Listener {
                         override fun updateConfig() = updateConfigFor(hair, timeRange)
                         override fun updateWeeklyAdapter() = activity.updateWeeklyAdapter()
@@ -52,9 +49,8 @@ class HomeActivity : AppCompatActivity() {
             }
 
     fun onClickWashedButton(view: View) {
-        val hair = setupFragment.hair.apply { lastWashing = LocalDate.now() }
-        val timeRange = setupFragment.timeRange
-        updateConfigFor(hair, timeRange)
+        setupFragment.setLastWashingAsToday()
+        updateConfigFor(setupFragment.hair, setupFragment.timeRange)
         updateWeeklyAdapter()
         disableWashedButtonIfWashedToday()
     }
@@ -70,18 +66,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun disableWashedButtonIfWashedToday() {
-        val lastWashing = setupFragment.hair.lastWashing
-        if (lastWashing == LocalDate.now())
+        if (setupFragment.isLastWashingToday())
             washedButton.isEnabled = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menu = menu!!
         menuInflater.inflate(R.menu.home_menu, menu)
-        if (!setupFragmentIsVisible())
-            hideSetupFragment()
-        else
-            showSetupFragment()
+        if (!setupFragmentIsVisible()) {
+            setupFragment.hideFragment()
+            setOpenHideMenuItemTitle(R.string.open_setup)
+        }
+        else {
+            setupFragment.showFragment()
+            setOpenHideMenuItemTitle(R.string.hide_setup)
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -95,12 +94,14 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId) {
         R.id.hide_open_setup -> {
             if (setupFragment.isVisible) {
-                hideSetupFragment()
+                setupFragment.hideFragment()
+                setOpenHideMenuItemTitle(R.string.open_setup)
                 val setupVisibility = false
                 updateConfigFor(setupVisibility)
             }
             else {
-                showSetupFragment()
+                setupFragment.showFragment()
+                setOpenHideMenuItemTitle(R.string.hide_setup)
                 val setupVisibility = true
                 updateConfigFor(setupVisibility)
             }
@@ -109,27 +110,14 @@ class HomeActivity : AppCompatActivity() {
         else -> super.onOptionsItemSelected(item)
     }
 
-        private fun hideSetupFragment() {
-            supportFragmentManager.beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .hide(setupFragment)
-                .commit()
-            menu.findItem(R.id.hide_open_setup)
-                .setTitle(R.string.open_setup)
-        }
-
-        private fun showSetupFragment() {
-            supportFragmentManager.beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .show(setupFragment)
-                .commit()
-            menu.findItem(R.id.hide_open_setup)
-                .setTitle(R.string.hide_setup)
-        }
-
         private fun updateConfigFor(setupVisibility: Boolean) {
             val db = ConfigDB(this)
             db.updateSetupVisibility(setupVisibility.toString())
             db.close()
         }
+
+    private fun setOpenHideMenuItemTitle(newTitleResId: Int) {
+        menu.findItem(R.id.hide_open_setup)
+            .setTitle(newTitleResId)
+    }
 }

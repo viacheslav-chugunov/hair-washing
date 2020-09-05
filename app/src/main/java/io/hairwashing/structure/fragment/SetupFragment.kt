@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import io.hairwashing.structure.dependences.Hair
 import io.hairwashing.R
 import io.hairwashing.structure.dependences.TimeRange
 import kotlinx.android.synthetic.main.fragment_setup.*
+import java.time.LocalDate
 
 class SetupFragment : Fragment() {
     var hair: Hair = Hair.asDefault()
@@ -23,6 +25,14 @@ class SetupFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_setup, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        context?.let {
+            hair = Hair.fromDB(it)
+            timeRange = TimeRange.fromDB(it)
+        }
     }
 
     override fun onStart() {
@@ -144,5 +154,23 @@ class SetupFragment : Fragment() {
     private fun callUpdatesFromListener() {
         listener?.updateConfig()
         listener?.updateWeeklyAdapter()
+    }
+
+    fun isLastWashingToday() = hair.lastWashing == LocalDate.now()
+
+    fun setLastWashingAsToday() { hair.lastWashing = LocalDate.now() }
+
+    fun hideFragment() {
+        fragmentManager?.beginTransaction()
+            ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+            ?.hide(this)
+            ?.commit()
+    }
+
+    fun showFragment() {
+        fragmentManager?.beginTransaction()
+            ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            ?.show(this)
+            ?.commit()
     }
 }

@@ -23,7 +23,6 @@ class WeeklyFragment : Fragment() {
             view.layoutManager = object : LinearLayoutManager(context) {
                 override fun canScrollVertically() = false
             }
-            view.adapter = WeeklyAdapter(Hair.asDefault(), TimeRange.ONE_WEEK)
         }
         return view
     }

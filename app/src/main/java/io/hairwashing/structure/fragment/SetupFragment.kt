@@ -12,7 +12,7 @@ import io.hairwashing.structure.dependences.TimeRange
 import kotlinx.android.synthetic.main.fragment_setup.*
 import java.time.LocalDate
 
-class SetupFragment : Fragment() {
+open class SetupFragment : Fragment() {
     var hair: Hair = Hair.asDefault()
     var timeRange: TimeRange = TimeRange.ONE_WEEK
     var listener: Listener? = null

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Hair Washing</string>
+    <string name="pre_setup_title">Pre setup</string>
+    <string name="apply">Apply</string>
 
     <!--  Washing permissions  -->
     <string name="wash_hair">Wash the hair</string>
@@ -33,7 +35,7 @@
     <string name="length">Length</string>
     <string name="climate">Climate</string>
     <string name="range">Range</string>
-    
+
     <!--  Menu items  -->
     <string name="open_setup">Open setup</string>
     <string name="hide_setup">Hide setup</string>

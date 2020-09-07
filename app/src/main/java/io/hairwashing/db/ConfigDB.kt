@@ -24,6 +24,7 @@ class ConfigDB(context: Context) {
         const val VALUE_PRE_LAST_WASHING = "pre_last_washing"
         const val VALUE_TIME_RANGE = "time_range"
         const val VALUE_SETUP_VISIBILITY = "setup_visibility"
+        const val VALUE_PRE_SETUP_ON_START = "pre_setup_on_start"
     }
 
     fun close() = db.close()
@@ -66,6 +67,8 @@ class ConfigDB(context: Context) {
     fun updateTimeRangeBy(arg: String) = updateBy(VALUE_TIME_RANGE, arg)
 
     fun updateSetupVisibility(arg: String) = updateBy(VALUE_SETUP_VISIBILITY, arg)
+
+    fun updatePreSetupOnStart(arg: String) = updateBy(VALUE_PRE_SETUP_ON_START, arg)
 
         private fun updateBy(value: String, arg: String) {
             val content = ContentValues().apply {

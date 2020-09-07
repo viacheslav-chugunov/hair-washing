@@ -37,19 +37,31 @@ class SetupFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        updateTypeButtonImage()
-        updateTimeRangeButtonImage()
-        updateLengthButtonImage()
-        updateClimateButtonImage()
-        updateTypeTextView()
-        updateTimeRangeTextView()
-        updateLengthTextView()
-        updateClimateTextView()
-        hair_type_button.setOnClickListener { onClickTypeButton() }
-        time_range_button.setOnClickListener { onClickTimeRangeButton() }
-        hair_length_button.setOnClickListener { onClickLengthButton() }
-        hair_climate_button.setOnClickListener { onClickClimateButton() }
+        updateButtonsImages()
+        updateTextsViews()
+        setButtonsListeners()
     }
+
+        private fun updateButtonsImages() {
+            updateTypeButtonImage()
+            updateTimeRangeButtonImage()
+            updateLengthButtonImage()
+            updateClimateButtonImage()
+        }
+
+        private fun updateTextsViews() {
+            updateTypeTextView()
+            updateTimeRangeTextView()
+            updateLengthTextView()
+            updateClimateTextView()
+        }
+
+        private fun setButtonsListeners() {
+            hair_type_button.setOnClickListener { onClickTypeButton() }
+            time_range_button.setOnClickListener { onClickTimeRangeButton() }
+            hair_length_button.setOnClickListener { onClickLengthButton() }
+            hair_climate_button.setOnClickListener { onClickClimateButton() }
+        }
 
     private fun updateTypeButtonImage() {
         val drawableRes = when(hair.type) {

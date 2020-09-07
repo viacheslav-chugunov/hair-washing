@@ -12,6 +12,7 @@ import io.hairwashing.db.ConfigDB.Companion.VALUE_CLIMATE
 import io.hairwashing.db.ConfigDB.Companion.VALUE_HAIR_LENGTH
 import io.hairwashing.db.ConfigDB.Companion.VALUE_HAIR_TYPE
 import io.hairwashing.db.ConfigDB.Companion.VALUE_LAST_WASHING
+import io.hairwashing.db.ConfigDB.Companion.VALUE_PRE_LAST_WASHING
 import io.hairwashing.db.ConfigDB.Companion.VALUE_SETUP_VISIBILITY
 import io.hairwashing.db.ConfigDB.Companion.VALUE_TIME_RANGE
 import io.hairwashing.structure.dependences.Hair
@@ -22,7 +23,7 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
 
     companion object {
         private const val DB_NAME = "configDB"
-        private const val DB_VERSION = 2
+        private const val DB_VERSION = 3
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -40,6 +41,8 @@ class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null
         insertLine(VALUE_HAIR_LENGTH, hairLength)
         val lastWashing = Hair.NEVER_WASHING_DATE.toString()
         insertLine(VALUE_LAST_WASHING, lastWashing)
+        val preLastWashing = Hair.NEVER_WASHING_DATE.toString()
+        insertLine(VALUE_PRE_LAST_WASHING, preLastWashing)
         val climate = Hair.Climate.FRIGID.view
         insertLine(VALUE_CLIMATE, climate)
         val timeRange = TimeRange.ONE_WEEK.view

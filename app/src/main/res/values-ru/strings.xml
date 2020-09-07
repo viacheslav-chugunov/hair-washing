@@ -7,6 +7,7 @@
     <string name="do_not_wash_hair">Не мыть</string>
     <string name="hair_washed">Помыл(а) волосы сегодня</string>
     <string name="hair_already_washed">Мыл(а) сегодня</string>
+    <string name="cancel_todays_washing">Не мыл(а) сегодня</string>
 
     <!--  Hair types  -->
     <string name="dry_hair">Сухие</string>

@@ -21,6 +21,7 @@ class ConfigDB(context: Context) {
         const val VALUE_HAIR_LENGTH = "hair_length"
         const val VALUE_CLIMATE = "climate"
         const val VALUE_LAST_WASHING = "last_washing"
+        const val VALUE_PRE_LAST_WASHING = "pre_last_washing"
         const val VALUE_TIME_RANGE = "time_range"
         const val VALUE_SETUP_VISIBILITY = "setup_visibility"
     }

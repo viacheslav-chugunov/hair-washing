@@ -4,8 +4,8 @@ import android.content.Context
 import io.hairwashing.db.ConfigDB
 import java.time.LocalDate
 
-class Hair private constructor(var type: Type, var length: Length,
-                               var climate: Climate, var lastWashing: LocalDate) {
+class Hair private constructor(var type: Type, var length: Length, var climate: Climate,
+                               var lastWashing: LocalDate, var preLastWashing: LocalDate) {
 
     enum class Type(val view: String) {
         DRY("dry"),
@@ -28,7 +28,7 @@ class Hair private constructor(var type: Type, var length: Length,
     companion object {
         val NEVER_WASHING_DATE: LocalDate = LocalDate.now().minusDays(7)
 
-        fun asDefault() = Hair(Type.REGULAR, Length.LONG, Climate.FRIGID, NEVER_WASHING_DATE)
+        fun asDefault() = Hair(Type.REGULAR, Length.LONG, Climate.FRIGID, NEVER_WASHING_DATE, NEVER_WASHING_DATE)
 
         fun fromDB(context: Context) : Hair {
             val db = ConfigDB(context)
@@ -36,9 +36,10 @@ class Hair private constructor(var type: Type, var length: Length,
             val type = getTypeBy(db.getArgBy(v.VALUE_HAIR_TYPE))
             val length = getLengthBy(db.getArgBy(v.VALUE_HAIR_LENGTH))
             val climate = getClimateBy(db.getArgBy(v.VALUE_CLIMATE))
-            val lastWashing = getLastWashingBy(db.getArgBy(v.VALUE_LAST_WASHING))
+            val lastWashing = getWashingDateBy(db.getArgBy(v.VALUE_LAST_WASHING))
+            val preLastWashing = getWashingDateBy(db.getArgBy(v.VALUE_PRE_LAST_WASHING))
             db.close()
-            return Hair(type, length, climate, lastWashing)
+            return Hair(type, length, climate, lastWashing, preLastWashing)
         }
 
             private fun getTypeBy(arg: String) = when(arg) {
@@ -62,7 +63,7 @@ class Hair private constructor(var type: Type, var length: Length,
                 else -> throw IllegalArgumentException("Unknown Hair.Climate in $arg")
             }
 
-            private fun getLastWashingBy(arg: String) : LocalDate {
+            private fun getWashingDateBy(arg: String) : LocalDate {
                 val (year, month, day) = arg.split("-").map { it.toInt() }
                 return LocalDate.of(year, month, day)
             }

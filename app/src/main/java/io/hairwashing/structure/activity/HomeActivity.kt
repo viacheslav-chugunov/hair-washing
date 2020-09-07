@@ -14,7 +14,6 @@ import io.hairwashing.structure.fragment.SetupFragment
 import io.hairwashing.structure.fragment.WeeklyFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.toolbar.*
-import java.time.LocalDate
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var setupFragment: SetupFragment
@@ -26,7 +25,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
         initFragments()
-        disableWashedButtonIfWashedToday()
+        updateWashedButtonIfWashedToday()
     }
 
         private fun initFragments() {
@@ -49,10 +48,13 @@ class HomeActivity : AppCompatActivity() {
             }
 
     fun onClickWashedButton(view: View) {
-        setupFragment.setLastWashingAsToday()
+        if (!setupFragment.isLastWashingToday())
+            setupFragment.setLastWashingAsToday()
+        else
+            setupFragment.setLastWashingAsPrevious()
         updateConfigFor(setupFragment.hair, setupFragment.timeRange)
         updateWeeklyAdapter()
-        disableWashedButtonIfWashedToday()
+        updateWashedButtonIfWashedToday()
     }
 
     private fun updateConfigFor(hair: Hair, timeRange: TimeRange) {
@@ -65,9 +67,11 @@ class HomeActivity : AppCompatActivity() {
         weeklyFragment.updateAdapter(setupFragment.hair, setupFragment.timeRange)
     }
 
-    private fun disableWashedButtonIfWashedToday() {
-        if (setupFragment.isLastWashingToday())
-            washedButton.isEnabled = false
+    private fun updateWashedButtonIfWashedToday() {
+        washed_button.text = when {
+            setupFragment.isLastWashingToday() -> getString(R.string.cancel_todays_washing)
+            else -> getString(R.string.hair_already_washed)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,8 +80,7 @@ class HomeActivity : AppCompatActivity() {
         if (!setupFragmentIsVisible()) {
             setupFragment.hideFragment()
             setOpenHideMenuItemTitle(R.string.open_setup)
-        }
-        else {
+        } else {
             setupFragment.showFragment()
             setOpenHideMenuItemTitle(R.string.hide_setup)
         }

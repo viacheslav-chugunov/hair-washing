@@ -6,6 +6,7 @@
     <string name="do_not_wash_hair">Don\'t wash the hair</string>
     <string name="hair_washed">Hair washed today</string>
     <string name="hair_already_washed">Hair is already washed</string>
+    <string name="cancel_todays_washing">Cancel today\'s washing</string>
 
     <!--  Hair types  -->
     <string name="dry_hair">Dry</string>

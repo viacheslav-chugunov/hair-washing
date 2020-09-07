@@ -45,7 +45,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/washedButton"
+        android:id="@+id/washed_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hair_washed"

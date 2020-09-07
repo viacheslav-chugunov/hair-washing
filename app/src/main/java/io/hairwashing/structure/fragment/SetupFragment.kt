@@ -158,7 +158,15 @@ class SetupFragment : Fragment() {
 
     fun isLastWashingToday() = hair.lastWashing == LocalDate.now()
 
-    fun setLastWashingAsToday() { hair.lastWashing = LocalDate.now() }
+    fun setLastWashingAsToday() {
+        hair.preLastWashing = hair.lastWashing
+        hair.lastWashing = LocalDate.now()
+    }
+
+    fun setLastWashingAsPrevious() {
+        hair.lastWashing = hair.preLastWashing
+        hair.preLastWashing = Hair.NEVER_WASHING_DATE
+    }
 
     fun hideFragment() {
         fragmentManager?.beginTransaction()

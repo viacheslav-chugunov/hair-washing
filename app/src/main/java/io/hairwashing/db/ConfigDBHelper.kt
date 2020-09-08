@@ -16,8 +16,8 @@ import io.hairwashing.db.ConfigDB.Companion.VALUE_PRE_LAST_WASHING
 import io.hairwashing.db.ConfigDB.Companion.VALUE_PRE_SETUP_ON_START
 import io.hairwashing.db.ConfigDB.Companion.VALUE_SETUP_VISIBILITY
 import io.hairwashing.db.ConfigDB.Companion.VALUE_TIME_RANGE
-import io.hairwashing.structure.dependences.Hair
-import io.hairwashing.structure.dependences.TimeRange
+import io.hairwashing.dependences.Hair
+import io.hairwashing.dependences.TimeRange
 
 class ConfigDBHelper(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     private var db: SQLiteDatabase? = null

@@ -1,17 +1,17 @@
-package io.hairwashing.structure.activity
+package io.hairwashing.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import io.hairwashing.structure.dependences.Hair
+import io.hairwashing.dependences.Hair
 import io.hairwashing.R
-import io.hairwashing.structure.dependences.TimeRange
+import io.hairwashing.dependences.TimeRange
 import io.hairwashing.db.ConfigDB
 import io.hairwashing.db.ConfigDB.Companion.VALUE_SETUP_VISIBILITY
-import io.hairwashing.structure.fragment.SetupFragment
-import io.hairwashing.structure.fragment.WeeklyFragment
+import io.hairwashing.fragment.SetupFragment
+import io.hairwashing.fragment.WeeklyFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.toolbar.*
 

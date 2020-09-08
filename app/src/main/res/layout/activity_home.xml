@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".structure.activity.HomeActivity">
+    tools:context=".activity.HomeActivity">
 
     <include
         layout="@layout/toolbar"
@@ -25,7 +25,7 @@
 
             <fragment
                 android:id="@+id/setup_fragment"
-                android:name="io.hairwashing.structure.fragment.SetupFragment"
+                android:name="io.hairwashing.fragment.SetupFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -35,7 +35,7 @@
 
             <fragment
                 android:id="@+id/weekly_list_fragment"
-                android:name="io.hairwashing.structure.fragment.WeeklyFragment"
+                android:name="io.hairwashing.fragment.WeeklyFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp" />

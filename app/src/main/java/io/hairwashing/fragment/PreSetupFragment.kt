@@ -1,4 +1,4 @@
-package io.hairwashing.structure.fragment
+package io.hairwashing.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

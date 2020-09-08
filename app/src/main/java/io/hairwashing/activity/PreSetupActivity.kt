@@ -1,9 +1,9 @@
-package io.hairwashing.structure.activity
+package io.hairwashing.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import io.hairwashing.structure.fragment.PreSetupFragment
+import io.hairwashing.fragment.PreSetupFragment
 import io.hairwashing.R
 import io.hairwashing.db.ConfigDB
 import io.hairwashing.extensions.startActivityWithoutBackStack

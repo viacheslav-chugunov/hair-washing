@@ -1,4 +1,4 @@
-package io.hairwashing.structure.activity
+package io.hairwashing.activity
 
 import android.os.Bundle
 import android.os.Handler

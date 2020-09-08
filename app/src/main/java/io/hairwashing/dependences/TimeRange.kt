@@ -1,4 +1,4 @@
-package io.hairwashing.structure.dependences
+package io.hairwashing.dependences
 
 import android.content.Context
 import io.hairwashing.db.ConfigDB

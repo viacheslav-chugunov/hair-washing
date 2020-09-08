@@ -1,4 +1,4 @@
-package io.hairwashing.structure.fragment
+package io.hairwashing.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
-import io.hairwashing.structure.dependences.Hair
+import io.hairwashing.dependences.Hair
 import io.hairwashing.R
-import io.hairwashing.structure.dependences.TimeRange
+import io.hairwashing.dependences.TimeRange
 import kotlinx.android.synthetic.main.fragment_setup.*
 import java.time.LocalDate
 

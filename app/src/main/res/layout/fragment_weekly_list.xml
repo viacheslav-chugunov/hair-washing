@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/weekly_list"
-    android:name="io.hairwashing.structure.fragment.WeeklyFragment"
+    android:name="io.hairwashing.fragment.WeeklyFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".structure.fragment.WeeklyFragment"
+    tools:context=".fragment.WeeklyFragment"
     tools:listitem="@layout/fragment_weekly_item" />

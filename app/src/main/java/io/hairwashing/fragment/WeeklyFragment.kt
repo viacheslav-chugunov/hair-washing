@@ -1,4 +1,4 @@
-package io.hairwashing.structure.fragment
+package io.hairwashing.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.hairwashing.structure.dependences.Hair
+import io.hairwashing.dependences.Hair
 import io.hairwashing.R
-import io.hairwashing.structure.dependences.TimeRange
-import io.hairwashing.tools.adapter.WeeklyAdapter
+import io.hairwashing.dependences.TimeRange
+import io.hairwashing.adapter.WeeklyAdapter
 
 class WeeklyFragment : Fragment() {
     private var recyclerView: RecyclerView? = null

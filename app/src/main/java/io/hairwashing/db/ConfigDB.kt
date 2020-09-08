@@ -4,8 +4,8 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import io.hairwashing.structure.dependences.TimeRange
-import io.hairwashing.structure.dependences.Hair
+import io.hairwashing.dependences.TimeRange
+import io.hairwashing.dependences.Hair
 import java.lang.IllegalArgumentException
 
 class ConfigDB(context: Context) {

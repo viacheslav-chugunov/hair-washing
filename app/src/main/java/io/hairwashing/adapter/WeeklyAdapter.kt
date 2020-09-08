@@ -1,4 +1,4 @@
-package io.hairwashing.tools.adapter
+package io.hairwashing.adapter
 
 import android.content.res.Resources
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import io.hairwashing.R
-import io.hairwashing.structure.dependences.TimeRange
-import io.hairwashing.structure.dependences.Hair
+import io.hairwashing.dependences.TimeRange
+import io.hairwashing.dependences.Hair
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle

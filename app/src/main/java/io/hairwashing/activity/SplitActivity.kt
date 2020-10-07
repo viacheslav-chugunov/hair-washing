@@ -3,14 +3,22 @@ package io.hairwashing.activity
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import io.hairwashing.R
 import io.hairwashing.db.ConfigDB
 import io.hairwashing.extensions.startActivityWithoutBackStack
 
 class SplitActivity : AppCompatActivity() {
+
+    private lateinit var mInterstitialAd: InterstitialAd
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_split)
+        initAd()
         rerouteToActivity()
     }
 
@@ -19,9 +27,9 @@ class SplitActivity : AppCompatActivity() {
                 if (showPreSetupOnStart())
                     startActivityWithoutBackStack(PreSetupActivity::class.java)
                 else
-                    startActivityWithoutBackStack(HomeActivity::class.java)
+                    showAd()
                 finish()
-            }, 1000)
+            }, 2000)
         }
 
             private fun showPreSetupOnStart() : Boolean {
@@ -30,4 +38,26 @@ class SplitActivity : AppCompatActivity() {
                 db.close()
                 return needToShow
             }
+
+    private fun initAd() {
+        MobileAds.initialize(this)
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-6875098488739325/6051165230"
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+        mInterstitialAd.adListener = object: AdListener() {
+
+            override fun onAdClosed() {
+                startActivityWithoutBackStack(HomeActivity::class.java)
+            }
+        }
+    }
+
+    private fun showAd() {
+        if (mInterstitialAd.isLoaded) {
+            mInterstitialAd.show()
+        } else {
+            startActivityWithoutBackStack(HomeActivity::class.java)
+        }
+    }
 }
